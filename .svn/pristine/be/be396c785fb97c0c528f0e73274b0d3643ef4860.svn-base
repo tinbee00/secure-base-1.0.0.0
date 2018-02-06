@@ -1,0 +1,92 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package zw.co.tinysolutions.model.ext;
+
+import java.util.Date;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Brighton
+ */
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class SysConnectedSystemsUsers implements java.io.Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private static final Logger LOG = Logger.getLogger(SysConnectedSystemsUsers.class.getName());
+
+    private Integer id;
+    private SysConnectedSystems sysConnectedSystems;
+    private SysSystemUsers sysSystemUsers;
+    private Date dateAdded;
+    private Boolean status = true;
+
+   public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the sysConnectedSystems
+     */
+  public SysConnectedSystems getSysConnectedSystems() {
+        return sysConnectedSystems;
+    }
+
+    /**
+     * @param sysConnectedSystems the sysConnectedSystems to set
+     */
+    public void setSysConnectedSystems(SysConnectedSystems sysConnectedSystems) {
+        this.sysConnectedSystems = sysConnectedSystems;
+    }
+
+    /**
+     * @return the sysSystemUsers
+     */
+  public SysSystemUsers getSysSystemUsers() {
+        return sysSystemUsers;
+    }
+
+    /**
+     * @param sysSystemUsers the sysSystemUsers to set
+     */
+    public void setSysSystemUsers(SysSystemUsers sysSystemUsers) {
+        this.sysSystemUsers = sysSystemUsers;
+    }
+
+    /**
+     * @return the dateAdded
+     */
+   public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    /**
+     * @param dateAdded the dateAdded to set
+     */
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    /**
+     * @return the status
+     */
+  public Boolean getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+}

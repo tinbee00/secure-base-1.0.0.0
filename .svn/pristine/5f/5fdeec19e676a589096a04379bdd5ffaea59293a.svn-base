@@ -1,0 +1,101 @@
+/*
+ * Maps system users to one or more roles(User Types)
+ */
+package zw.co.tinysolutions.model;
+
+import java.util.logging.Logger;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.XmlRootElement;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+/**
+ *
+ * @author Brighton
+ */
+@Entity
+@Table(name = "sys_system_users_roles", uniqueConstraints = @UniqueConstraint(columnNames = {"fk_connected_systems_user", "fk_user_type"})
+)
+@JsonIgnoreProperties(ignoreUnknown = true)
+@XmlRootElement
+public class SysSystemUsersRoles implements java.io.Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private static final Logger LOG = Logger.getLogger(SysSystemUsersRoles.class.getName());
+    private Integer id;
+    private SysConnectedSystemsUsers sysConnectedSystemsUsers;
+    private SysUserTypes sysUserTypes;
+    private boolean status = true;
+
+    public SysSystemUsersRoles() {
+    }
+
+ 
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the sysSystemUsers
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_connected_systems_user")
+    public SysConnectedSystemsUsers getSysConnectedSystemsUsers() {
+        return sysConnectedSystemsUsers;
+    }
+
+    /**
+     * @param sysConnectedSystemsUsers the sysConnectedSystemsUsers to set
+     */
+    public void setSysConnectedSystemsUsers(SysConnectedSystemsUsers sysConnectedSystemsUsers) {
+        this.sysConnectedSystemsUsers = sysConnectedSystemsUsers;
+    }
+
+    /**
+     * @return the sysUserTypes
+     */
+       @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_user_type")
+    public SysUserTypes getSysUserTypes() {
+        return sysUserTypes;
+    }
+
+    /**
+     * @param sysUserTypes the sysUserTypes to set
+     */
+    public void setSysUserTypes(SysUserTypes sysUserTypes) {
+        this.sysUserTypes = sysUserTypes;
+    }
+
+    @Column(name = "status", nullable = false)
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+}

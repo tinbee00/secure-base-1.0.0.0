@@ -1,0 +1,120 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package zw.co.tinysolutions.model;
+
+import java.util.Date;
+import java.util.logging.Logger;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.XmlRootElement;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+/**
+ *
+ * @author Brighton
+ */
+@Entity
+@Table(name = "sys_connected_systems_users", 
+        uniqueConstraints = @UniqueConstraint(columnNames = {"fk_user","fk_connected_system"})
+)
+@JsonIgnoreProperties(ignoreUnknown = true)
+@XmlRootElement
+public class SysConnectedSystemsUsers implements java.io.Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private static final Logger LOG = Logger.getLogger(SysConnectedSystemsUsers.class.getName());
+
+    private Integer id;
+    private SysConnectedSystems sysConnectedSystems;
+    private SysSystemUsers sysSystemUsers;
+    private Date dateAdded;
+    private Boolean status = true;
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the sysConnectedSystems
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_connected_system")
+    public SysConnectedSystems getSysConnectedSystems() {
+        return sysConnectedSystems;
+    }
+
+    /**
+     * @param sysConnectedSystems the sysConnectedSystems to set
+     */
+    public void setSysConnectedSystems(SysConnectedSystems sysConnectedSystems) {
+        this.sysConnectedSystems = sysConnectedSystems;
+    }
+
+    /**
+     * @return the sysSystemUsers
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_user")
+    public SysSystemUsers getSysSystemUsers() {
+        return sysSystemUsers;
+    }
+
+    /**
+     * @param sysSystemUsers the sysSystemUsers to set
+     */
+    public void setSysSystemUsers(SysSystemUsers sysSystemUsers) {
+        this.sysSystemUsers = sysSystemUsers;
+    }
+
+    /**
+     * @return the dateAdded
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_added", length = 19)
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    /**
+     * @param dateAdded the dateAdded to set
+     */
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    /**
+     * @return the status
+     */
+    @Column(name = "status", nullable = false)
+    public Boolean getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+}

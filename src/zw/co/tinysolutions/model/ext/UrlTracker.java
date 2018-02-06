@@ -1,0 +1,64 @@
+package zw.co.tinysolutions.model.ext;
+
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Brighton
+ */
+
+public class UrlTracker implements java.io.Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private static final Logger LOG = Logger.getLogger(UrlTracker.class.getName());
+
+    private Integer id;
+    private String value;
+    private String description;
+
+    public UrlTracker() {
+    }
+
+    public UrlTracker(Integer id, String value, String description) {
+        this.id = id;
+        this.value = value;
+        this.description = description;
+    }
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the value
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * @param value the value to set
+     */
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+}

@@ -1,0 +1,133 @@
+package zw.co.tinysolutions.model.ext;
+
+import java.util.ArrayList;
+/**
+ *
+ * @author Brighton
+ */
+
+public class UserDetails implements java.io.Serializable {
+
+    private Integer id;
+    private ArrayList<String> roles;
+    private String username;
+    private Boolean accessAllowed;
+    private Integer systemId;
+    private String applicationUID;
+    private String message="";
+
+    public UserDetails() {
+        id = 0;
+        this.username = "";
+        accessAllowed = false;
+        roles = new ArrayList<>(1);
+        roles.add("ANONYMOUS");
+        this.systemId = 0;
+        this.applicationUID = "{000000aa-a0a0-00a0-aaa0-000a0aa000a0}";
+    }
+
+    public UserDetails(String username) {
+        id = 0;
+        this.username = username;
+        accessAllowed = false;
+        roles = new ArrayList<>(1);
+        roles.add("ANONYMOUS");
+        this.systemId = 0;
+        this.applicationUID = "{000000aa-a0a0-00a0-aaa0-000a0aa000a0}";
+    }
+
+    public UserDetails(Integer id, ArrayList<String> roles, String username, Boolean accessAllowed, Integer systemId, String applicationUID, String message) {
+        this.id = id;
+        this.roles = roles;
+        this.username = username;
+        this.accessAllowed = accessAllowed;
+        this.systemId = systemId;
+        this.applicationUID = applicationUID;
+        this.message = message;
+    }
+
+    
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the roles
+     */
+    public ArrayList<String> getRoles() {
+        return roles;
+    }
+
+    /**
+     * @param roles the roles to set
+     */
+    public void setRoles(ArrayList<String> roles) {
+        this.roles = roles;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the accessAllowed
+     */
+    public Boolean getAccessAllowed() {
+        return accessAllowed;
+    }
+
+    /**
+     * @param accessAllowed the accessAllowed to set
+     */
+    public void setAccessAllowed(Boolean accessAllowed) {
+        this.accessAllowed = accessAllowed;
+    }
+
+    public Integer getSystemId() {
+        return systemId;
+    }
+
+    public void setSystemId(Integer systemId) {
+        this.systemId = systemId;
+    }
+
+    public String getApplicationUID() {
+        return applicationUID;
+    }
+
+    public void setApplicationUID(String applicationUID) {
+        this.applicationUID = applicationUID;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+    
+    
+
+}

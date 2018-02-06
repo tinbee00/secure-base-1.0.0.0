@@ -1,0 +1,123 @@
+package zw.co.tinysolutions.model;
+
+import java.util.logging.Logger;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.XmlRootElement;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+/**
+ *
+ * @author Brighton
+ */
+@Entity
+@Table(name = "sys_connected_systems",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"application_uid"})
+)
+@JsonIgnoreProperties(ignoreUnknown = true)
+@XmlRootElement
+public class SysConnectedSystems implements java.io.Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private static final Logger LOG = Logger.getLogger(SysConnectedSystems.class.getName());
+
+    private Integer id;
+    private String systemName;
+    private String applicationUID;
+    private String applicationOwner;
+    private String applicationUrl;    
+    private SysSystemUsers sysSystemUsers;
+    private boolean status=true;
+
+    public SysConnectedSystems() {
+    }
+
+    public SysConnectedSystems(Integer id, String systemName, String applicationUID, 
+            String applicationOwner, String applicationUrl,
+            boolean status, SysSystemUsers sysSystemUsers) {
+        this.id = id;
+        this.systemName = systemName;
+        this.applicationUID = applicationUID;
+        this.applicationOwner = applicationOwner;
+        this.applicationUrl = applicationUrl;
+        this.status = status;
+        this.sysSystemUsers = sysSystemUsers;
+    }
+
+ 
+    
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Column(name = "system_name", nullable = false, length = 100)
+    public String getSystemName() {
+        return systemName;
+    }
+
+    public void setSystemName(String systemName) {
+        this.systemName = systemName;
+    }
+
+    @Column(name = "application_uid", nullable = false, length = 100)
+    public String getApplicationUID() {
+        return applicationUID;
+    }
+
+    public void setApplicationUID(String applicationUID) {
+        this.applicationUID = applicationUID;
+    }
+
+    @Column(name = "system_owner", nullable = false, length = 100)
+    public String getApplicationOwner() {
+        return applicationOwner;
+    }
+
+    public void setApplicationOwner(String applicationOwner) {
+        this.applicationOwner = applicationOwner;
+    }
+
+    @Column(name = "system_url", nullable = false, length = 100)
+    public String getApplicationUrl() {
+        return applicationUrl;
+    }
+
+    public void setApplicationUrl(String applicationUrl) {
+        this.applicationUrl = applicationUrl;
+    }    
+    
+    @Column(name = "status", nullable = false)
+    public boolean isStatus() {
+        return this.status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+  @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_owner")
+    public SysSystemUsers getSysSystemUsers() {
+        return this.sysSystemUsers;
+    }
+
+    public void setSysSystemUsers(SysSystemUsers sysSystemUsers) {
+        this.sysSystemUsers = sysSystemUsers;
+    }
+    
+}
